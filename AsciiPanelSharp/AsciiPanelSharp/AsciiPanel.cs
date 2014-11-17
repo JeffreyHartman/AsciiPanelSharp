@@ -17,18 +17,58 @@ namespace AsciiPanelSharp
     {
         private const int CharWidth = 9;
         private const int CharHeight = 16;
-        //private const Color DefaultBackgroundColor = Black;
-        //private const Color DefaultForegroundColor = White;
+        public Color DefaultBackgroundColor = Black;
+        public Color DefaultForegroundColor = White;
 
         public int WidthInCharacters { get; set; }
         public int HeightInCharacters { get; set; }
-        public int CursorX { get; set; }
-        public int CursorY { get; set; }
+
+        private int _cursorX;
+        public int CursorX
+        {
+            get
+            { return _cursorX; }
+            set
+            {
+                if (value < 0 || value >= WidthInCharacters) 
+                    throw new ArgumentOutOfRangeException("cursorX must be within range [0," + WidthInCharacters + "].");
+                _cursorX = value;
+            }
+        }
+
+        private int _cursorY;
+        public int CursorY
+        {
+            get { return _cursorY; }
+            set
+            {
+                if (value < 0 || value >= HeightInCharacters)
+                    throw new ArgumentOutOfRangeException("cursorY must be within range [0," + HeightInCharacters + "].");
+                _cursorY = value;
+            }
+        }
         public Bitmap GlyphSprite { get; set; }
         public Bitmap[] Glyphs { get; set; }
         public char[,] Chars { get; set; }
         public Color[,] BackgroundColors { get; set; }
         public Color[,] ForegroundColors { get; set; }
+
+        public static Color Black = Color.FromArgb(0, 0, 0);
+        public static Color Red = Color.FromArgb(128, 0, 0);
+        public static Color Green = Color.FromArgb(0, 128, 0);
+        public static Color Yellow = Color.FromArgb(128, 128, 0);
+        public static Color Blue = Color.FromArgb(0, 0, 128);
+        public static Color Magenta = Color.FromArgb(128, 0, 128);
+        public static Color Cyan = Color.FromArgb(0, 128, 128);
+        public static Color White = Color.FromArgb(192, 192, 192);
+        public static Color BrightBlack = Color.FromArgb(128, 128, 128);
+        public static Color BrightRed = Color.FromArgb(255, 0, 0);
+        public static Color BrightGreen = Color.FromArgb(0, 255, 0);
+        public static Color BrightYellow = Color.FromArgb(255, 255, 0);
+        public static Color BrightBlue = Color.FromArgb(0, 0, 255);
+        public static Color BrightMagenta = Color.FromArgb(255, 0, 255);
+        public static Color BrightCyan = Color.FromArgb(0, 255, 255);
+        public static Color BrightWhite = Color.FromArgb(255, 255, 255);
 
         public AsciiPanel() : this(80, 24) {}
 
@@ -50,7 +90,7 @@ namespace AsciiPanelSharp
 
             this.LoadGlyphs();
 
-            //this.Clear();
+            this.Clear();
 
             InitializeComponent();
 
@@ -64,7 +104,7 @@ namespace AsciiPanelSharp
             }
             catch (FileNotFoundException ex)
             {
-                MessageBox.Show("FATAL ERROR: cp437.png was not found. Ensure cp437.png is in the root of the executable. Application will exit.");
+                MessageBox.Show("FATAL ERROR: cp437.png was not found. Ensure cp437.png is in the root of the executable." + ex.Message);
                 Application.Exit();
             }
 
@@ -77,7 +117,7 @@ namespace AsciiPanelSharp
                 Glyphs[i] = GlyphSprite.Clone(rect, GlyphSprite.PixelFormat);
 
                 // save to disk for preview
-                //Glyphs[i].Save(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "thingey.bmp"), ImageFormat.Png);
+                //Glyphs[i].Save(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "thingey"+i+".bmp"), ImageFormat.Png);
             }
         }
 
