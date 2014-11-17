@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsciiPanelSharp", "AsciiPanelSharp\AsciiPanelSharp.csproj", "{FEBA0C12-C40C-4117-A949-FC1B1B99203A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rlSharp", "rlSharp\rlSharp.csproj", "{A6F71574-92A4-441B-B31C-0FD4038E4CA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{FEBA0C12-C40C-4117-A949-FC1B1B99203A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEBA0C12-C40C-4117-A949-FC1B1B99203A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEBA0C12-C40C-4117-A949-FC1B1B99203A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6F71574-92A4-441B-B31C-0FD4038E4CA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6F71574-92A4-441B-B31C-0FD4038E4CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6F71574-92A4-441B-B31C-0FD4038E4CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6F71574-92A4-441B-B31C-0FD4038E4CA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

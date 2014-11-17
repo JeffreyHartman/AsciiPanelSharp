@@ -100,16 +100,16 @@ namespace AsciiPanelSharp
             InitializeComponent();
         }
 
+        
 
         private void PaintScreen(object sender, PaintEventArgs e)
         {
-            Graphics g = e.Graphics;
             for (int x = 0; x < WidthInCharacters; x++)
             {
                 for (int y = 0; y < HeightInCharacters; y++)
                 {
                     Color bg = BackgroundColors[x, y];
-                    Color fg = BackgroundColors[x, y];
+                    Color fg = ForegroundColors[x, y];
 
                     var imageAttributes = new ImageAttributes();
                     var backgroundColorMap = new ColorMap();
@@ -149,9 +149,6 @@ namespace AsciiPanelSharp
 
                 var rect = new Rectangle(new Point(sx, sy), new Size(CharWidth, CharHeight) );
                 Glyphs[i] = GlyphSprite.Clone(rect, GlyphSprite.PixelFormat);
-
-                // save to disk for preview
-                //Glyphs[i].Save(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "thingey"+i+".bmp"), ImageFormat.Png);
             }
         }
 
@@ -186,6 +183,8 @@ namespace AsciiPanelSharp
                     Write(character, xo, yo, foreground, background);
                 }
             }
+            _cursorX = 0;
+            _cursorY = 0;
 
             return this;
         }
@@ -256,7 +255,7 @@ namespace AsciiPanelSharp
             {
                 Write(str[i], x + i, y, foreground, background);
             }
-
+            this.Update();
             return this;
         }
     }
